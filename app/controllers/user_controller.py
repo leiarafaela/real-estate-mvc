@@ -1,18 +1,9 @@
-from app import app
-from flask import request, jsonify
-from flask_jwt_extended import jwt_required
+from flask import jsonify
 
 from ..models.user import User
 
-@app.route('/')
-def home():
-    return '<h1>ola <h1/>'
 
-
-@app.route('/signup', methods=['POST'])
-def signup():
-    user = request.json
-
+def signup(user):
     user_exists = User.query.filter_by(email=user['email']).first()
 
     if user_exists:
@@ -25,14 +16,13 @@ def signup():
         "email": new_user.email
     })
 
-@app.route('/profile/<getemail>')
-@jwt_required()
-def my_profile(getemail):
-    print(getemail)
-    if not getemail:
+
+def my_profile(email):
+    print(email)
+    if not email:
         return jsonify({"error": "acesso negado"}), 401
     
-    user = User.query.filter_by(email=getemail).first()
+    user = User.query.filter_by(email=email).first()
 
     response_body = {
         "id": user.id,
