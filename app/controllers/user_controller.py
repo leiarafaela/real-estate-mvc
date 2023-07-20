@@ -16,7 +16,6 @@ def signup(user):
         "email": new_user.email
     })
 
-
 def my_profile(email):
     print(email)
     if not email:

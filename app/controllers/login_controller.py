@@ -24,7 +24,6 @@ def create_token(email, password):
         return jsonify({"error": "Nao autorizado"}), 401
     
     access_token = create_access_token(identity=email)
-    # response= {"access_token": access_token}
 
     return jsonify({
         "email": email,
