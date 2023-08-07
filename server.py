@@ -2,7 +2,7 @@ from app.config.connect import db
 from flask_cors import CORS
 
 from app import app
-from app.views import login_view, user_view
+from app.views import login_view, user_view, mercado_pago_view
 
 
 CORS(app, supports_credentials=True)
