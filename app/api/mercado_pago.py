@@ -1,4 +1,9 @@
 import mercadopago
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+TOKEN=os.getenv('TOKEN_TEST')
 
 def payment(value):
     preference = {
@@ -13,7 +18,7 @@ def payment(value):
         ]
     }
 
-    mp = mercadopago.SDK("TEST-7928821890491680-051819-916f654b800320fa3af09cd19824117c-479481641")
+    mp = mercadopago.SDK(TOKEN)
 
     preferenceResult = mp.preference().create(preference)
     return preferenceResult   
